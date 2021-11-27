@@ -9,8 +9,6 @@ from .forms import UseDeckForm, MatchForm, ResultForm, SearchForm
 from django.contrib import messages
 from django.db.models import Q
 import json
-import pandas as pd
-import numpy as np
 from django.db.models import Sum
 from django.core.paginator import Paginator
 
