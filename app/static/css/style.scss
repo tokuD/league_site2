@@ -1,0 +1,133 @@
+html{
+    background-color: aquamarine;
+    a{
+        text-decoration: none;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
+
+.message-success{
+    background-color: hotpink;
+    // width: fit-content;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    color: indigo;
+    box-shadow: 0 5px 7px 0 rgba(0, 0, 0, .5);
+}
+
+header{
+    background-color: gray;
+    .container{
+
+    }
+}
+
+.user_wrapper{
+    display: grid;
+}
+
+.match_wrapper{
+    display: grid;
+}
+
+.match_content{
+    background-color: seagreen;
+    margin: 10px 10px;
+    box-shadow: 0 5px 7px 0 rgba(0, 0, 0, .5);
+    border-radius: 5px;
+}
+
+.match_content p{
+    margin: 2px;
+}
+
+.user_info{
+    background-color: seagreen;
+    margin: 5px;
+    box-shadow: 0 5px 7px 0 rgba(0, 0, 0, .5);
+    border-radius: 5px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    a{
+        margin: auto;
+    }
+}
+
+th, td{
+    border: solid 1px;
+    padding: 10px;
+}
+
+table{
+    border-collapse: collapse;
+    width: 50%;
+}
+
+.register_match{
+    background-color: seagreen;
+    margin: 3px;
+    // border-radius: 2px;
+    width: fit-content;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+}
+
+.deck_image{
+    background-color: seagreen;
+    margin: 5px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.pagination{
+    display: grid;
+    grid-template-columns: 1fr;
+    table{
+        width: 100%;
+        margin: 10px auto;
+    }
+}
+
+//! PC用
+@media screen and (min-width:480px){
+    .user_wrapper{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .match_wrapper{
+        grid-template-columns: 1fr 1fr;
+    }
+    .pagination{
+        table{
+            width: 50%;
+            margin: 10px auto;
+        }
+    }
+}
+
+// !スマホ
+@media screen and (max-width:480px){
+    .user_wrapper{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .match_wrapper{
+        grid-template-columns: 1fr;
+    }
+
+    table{
+        width: 100%;
+    }
+    .deck_image{
+        display: grid;
+        grid-template-columns: 1fr;
+        p{
+            margin: 3px auto;
+        }
+        img{
+            margin: 3px auto;
+        }
+    }
+}

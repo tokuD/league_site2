@@ -1,0 +1,62 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <div class="register_match">
+        <a href="{% url 'app:register_match' %}">試合登録</a>
+    </div>
+    <div class="match_wrapper">
+        {% for match in matches %}
+            <div class="match_content">
+                <a href="{% url 'app:match_detail' match.pk %}">{{ match }}</a>
+                {% if request.user == match.player1 or request.user == match.player2 %}
+                        <p><a href="{% url 'app:submit_result' match.pk %}">結果報告</a></p>
+                {% endif %}
+                {% if request.user == match.player1 %}
+                        <p><a href="{% url 'app:edit_match' match.pk %}">日程編集</a></p>
+                        <form action="{% url 'app:delete_match' match.pk%}" method="POST">{% csrf_token %}
+                            <button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
+                        </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="pagination">
+        <table>
+            <tr>
+                {% if matches.has_previous %}
+                    <th>
+                        <a class="page-link" href="{% url 'app:match_index' 1 %}">&laquo; first</a>
+                    </th>
+                    <th>
+                        <a class="page-link" href="{% url 'app:match_index' matches.previous_page_number %}">&laquo; prev</a>
+                    </th>
+                {% else %}
+                    <th>
+                        <a class="page-link">&laquo; first</a>
+                    </th>
+                    <th>
+                        <a class="page-link">&laquo; prev</a>
+                    </th>
+                {% endif %}
+                    <th>
+                        <a class="page-link">{{matches.number}}/{{matches.paginator.num_pages}}</a>
+                    </th>
+                {% if matches.has_next %}
+                    <th>
+                        <a class="page-link" href="{% url 'app:match_index' matches.next_page_number %}">next &raquo;</a>
+                    </th>
+                    <th>
+                        <a class="page-link" href="{% url 'app:match_index' matches.paginator.num_pages %}">last &raquo;</a>
+                    </th>
+                {% else %}
+                    <th>
+                        <a class="page-link">next &raquo;</a>
+                    </th>
+                    <th>
+                        <a class="page-link">last &raquo;</a>
+                    </th>
+                {% endif %}
+            </tr>
+        </table>
+    </div>
+{% endblock  %}

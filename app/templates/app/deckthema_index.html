@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    {% for deck in decks %}
+        <a href="{% url 'app:deckthema_detail' deck.pk %}">
+            <h3>{{deck.name}}</h3>
+            <img src="{{deck.image.url}}">
+        </a>
+        <p>tier{{deck.tier}}</p>
+    {% endfor %}
+{% endblock content %}

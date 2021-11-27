@@ -1,0 +1,55 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <form action="{%url 'app:user_index' 1 %}" method="post">{% csrf_token %}
+        {{form}}
+        <button type="submit">検索</button>
+    </form>
+        <div class="user_wrapper">
+            {% for user_image in user_images %}
+                <div class="user_info">
+                    <img src="{{user_image.image.url}}" width="50px" height="50px">
+                    <a href="{% url 'app:user_detail' user_image.user.pk %}">{{ user_image.user.username }}</a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="pagination">
+        <table>
+            <tr>
+                {% if user_images.has_previous %}
+                    <th>
+                        <a class="page-link" href="{% url 'app:user_index' 1 %}">&laquo; first</a>
+                    </th>
+                    <th>
+                        <a class="page-link" href="{% url 'app:user_index' user_images.previous_page_number %}">&laquo; prev</a>
+                    </th>
+                {% else %}
+                    <th>
+                        <a class="page-link">&laquo; first</a>
+                    </th>
+                    <th>
+                        <a class="page-link">&laquo; prev</a>
+                    </th>
+                {% endif %}
+                    <th>
+                        <a class="page-link">{{user_images.number}}/{{user_images.paginator.num_pages}}</a>
+                    </th>
+                {% if user_images.has_next %}
+                    <th>
+                        <a class="page-link" href="{% url 'app:user_index' user_images.next_page_number %}">next &raquo;</a>
+                    </th>
+                    <th>
+                        <a class="page-link" href="{% url 'app:user_index' user_images.paginator.num_pages %}">last &raquo;</a>
+                    </th>
+                {% else %}
+                    <th>
+                        <a class="page-link">next &raquo;</a>
+                    </th>
+                    <th>
+                        <a class="page-link">last &raquo;</a>
+                    </th>
+                {% endif %}
+            </tr>
+        </table>
+    </div>
+{% endblock  %}

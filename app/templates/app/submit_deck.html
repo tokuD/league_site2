@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<p>「{{ match }}」デッキ提出</p>
+<form action="{% url 'app:submit_deck' match.pk %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+    <table>
+        <tr>
+            <th>デッキ画像1</th>
+            <td>{{ form.image1 }}</td>
+        </tr>
+        <tr>
+            <th>デッキ画像2</th>
+            <td>{{ form.image2 }}</td>
+        </tr>
+    </table>
+    <button type="submit" class="btn">提出</button>
+</form>
+{% endblock  %}

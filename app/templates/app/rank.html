@@ -1,0 +1,10 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <table>
+    <tr><th>名前</th><th>勝</th><th>負</th><th>得点</th></tr>
+    {% for record in records %}
+        <tr><td>{{record.user}}</td><td>{{record.win}}</td><td>{{record.lose}}</td><td>{{record.point}}</td></tr>
+    {% endfor %}
+    </table>
+{% endblock content %}

@@ -1,0 +1,9 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <h2>{{deck.name}}</h2>
+    <img src="{{deck.image.url}}">
+    <p>tier{{deck.tier}}</p>
+    <p>使用回数 {{deck.in_played}}</p>
+    <p>{{deck.win}}勝 {{deck.lose}}敗</p>
+{% endblock content %}

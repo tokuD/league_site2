@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <form action="{% url 'app:submit_result' match.pk %}" method="POST">{% csrf_token %}
+        <table>
+            <tr>
+                <th>デッキ名</th>
+                <td>{{ form.deck }}</td>
+            </tr>
+            <tr>
+                <th>スキル</th>
+                <td>{{ form.skill }}</td>
+            </tr>
+            <tr>
+                <th>1試合目</th>
+                <td>{{ form.result1 }}</td>
+            </tr>
+            <tr>
+                <th>2試合目</th>
+                <td>{{ form.result2 }}</td>
+            </tr>
+            <tr>
+                <th>3試合目</th>
+                <td>{{ form.result3 }}</td>
+            </tr>
+            <tr>
+                <th>コメント(任意)</th>
+                <td>{{ form.comment }}</td>
+            </tr>
+        </table>
+        <button type="submit" class="btn">提出</button>
+    </form>
+{% endblock  %}

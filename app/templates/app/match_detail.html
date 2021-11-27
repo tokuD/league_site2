@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <a href="{% url 'app:submit_result' match.pk %}">編集する</a>
+    <table>
+        <tr>
+            <th>{{ player1 }}</th><th>{{ player2 }}</th>
+        </tr>
+        <tr>
+            <td><img src="{{deck1.image.url}}" width="50px" height="50px">{{ deck1 }}</td>
+            <td>{{ deck2 }}<img src="{{deck2.image.url}}" width="50px" height="50px"></td>
+        </tr>
+        <tr>
+            <td>{{ skill1 }}</td>
+            <td>{{ skill2 }}</td>
+        </tr>
+        <tr>
+            <td>{{ result11 }}</td>
+            <td>{{ result21 }}</td>
+        </tr>
+        <tr>
+            <td>{{ result12 }}</td>
+            <td>{{ result22 }}</td>
+        </tr>
+        <tr>
+            <td>{{ result13 }}</td>
+            <td>{{ result23 }}</td>
+        </tr>
+        <tr>
+            <td>{{ score1 }}</td>
+            <td>{{ score2 }}</td>
+        </tr>
+        <tr>
+            <td>{{ comment1 }}</td>
+            <td>{{ comment2 }}</td>
+        </tr>
+    </table>
+{% endblock  %}

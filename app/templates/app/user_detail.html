@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <p>{{ user }}のマイページ</p>
+    {% if user.pk == request.user.pk %}
+        <p><a href="{% url 'app:register_match' %}">試合登録</a></p>
+        {% for match in matches %}
+            <p><a href="{% url 'app:submit_deck' match.pk %}">「{{match}}」 デッキ提出</a></p>
+        {% endfor %}
+    {% else %}
+        {% for match in matches %}
+            <p><a href="{% url 'app:match_detail' match.pk %}">{{ match }}</a></p>
+        {% endfor %}
+    {% endif %}
+    {% if user.pk == request.user.pk or request.user.is_superuser  %}
+        {% for deck in decks %}
+            <div class="deck_image">
+                <p>{{deck.match}}</p>
+                <img src="{{ deck.image1.url }}" width="200px" height="200px">
+                {% if deck.image2 %}
+                    <img src="{{ deck.image2.url }}" width="200px" height="200px">
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock  %}
